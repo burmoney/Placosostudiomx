@@ -91,7 +91,7 @@ background-image: url('https://scontent.cdninstagram.com/v/t51.2885-15/sh0.08/e3
                   
 
                     <form name="submit-to-google-sheet" id="submit-to-google-sheet" >
-<input name="appointmentSet" type="date" class="form-control" >
+<input name="newDate" type="date" class="form-control" id="newDate">
             <input name="Date"  type="hidden" id="date" placeholder="date" class="form-control" onblur="validate()"/> <br />
 
 
@@ -251,7 +251,7 @@ $(document).ready( function() {
     var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 
 
-   $('#TimestampInput').val(today);
+   $('#newDate').val(today);
 });
 </script>
 

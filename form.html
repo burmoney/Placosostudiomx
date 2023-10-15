@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" type="image/png" href="imgs/favicon.png"/>
-  <base href="/">
-  <style>
-  .jumbotron {
-
-
-  opacity: 0.5;
-
-   }
-   input[type="date"] {
-   	min-height: 2.5rem;
-   }
-
-  	</style>
-
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Placosostudio.com</title>
+    <title>roho7nailz.com</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="//netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" />
 
     <link href='https://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet'>
     <style>
+    .hidden{
 
-html,body { height:100%;
+    }
+.jumbotron {
   background-repeat: no-repeat;
 background-size: cover;
-
 background-image: url('https://scontent.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/37180211_277977819629094_5675545732564647936_n.jpg?_nc_ht=scontent.cdninstagram.com&_nc_ohc=Nqt2M2VL-u0AX_-4oUq&oh=43c9e6dcd04476ba58594d2623fffcea&oe=5E90B652');
 }
     .paragraph {
         font-family: 'UnifrakturMaguntia';
         font-size: 50px;
     line-height: 62px;
-    color:lblue;
+    color:pink;
     }
     .pink {
-      color:lblue;
+      color:pink;
     }
 
     </style>
 </head>
 <body>
-	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
                   
                   
@@ -68,29 +54,16 @@ background-image: url('https://scontent.cdninstagram.com/v/t51.2885-15/sh0.08/e3
               <div class="col-sm-6 offset-sm-3">
                     <h1 class="paragraph">t(-_-,t)</h1>
                   
-                  
-                  
-                  
-        
-                  
-                  
-                  
-                  
-                  
-                         
-            
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-
                     <form name="submit-to-google-sheet" id="submit-to-google-sheet" >
-<input name="newDate" type="date" class="form-control" id="newDate">
-            <input name="Date"  type="hidden" id="date" placeholder="date" class="form-control" onblur="validate()"/> <br />
 
+
+
+
+                      
+                  <input type="hidden" id="TimestampInput" /> <br>
+
+
+                   Date:  <input name="Dateinput" type="date" id="DateInput" placeholder="date" class="form-control" onblur="validate()"/> <br />
 
                    Time:
 
@@ -111,7 +84,7 @@ background-image: url('https://scontent.cdninstagram.com/v/t51.2885-15/sh0.08/e3
   <input name="Name"  type="text" id="name" placeholder="Name" class="form-control"  onblur="validate()" /> <br />
 
 
-                <input name="Reason" id="ReasonInput" placeholder="reason" class="form-control" onblur="validate()"/><br />
+                <input name="Reason" id="ReasonInput" placeholder="phone number" class="form-control" onblur="validate()"/><br />
 
 
                   <div class="form-group">
@@ -126,14 +99,10 @@ background-image: url('https://scontent.cdninstagram.com/v/t51.2885-15/sh0.08/e3
 
 
 
-
-
     </div>
   </div>
 </div>
-
-
-
+</div>
 
 <script>
 
@@ -144,7 +113,8 @@ background-image: url('https://scontent.cdninstagram.com/v/t51.2885-15/sh0.08/e3
 		var valid = true;
 		valid = checkEmpty($("#name"));
 	   valid = one($("#ReasonInput"));
-     
+      valid = two($("#DateInput"));
+     DateInput
 		valid = valid && checkEmail($("#email"));
 
 		$("#myButton").attr("disabled",true);
@@ -248,9 +218,17 @@ $(document).ready( function() {
     var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 
 
-   $('#newDate').val(today);
+   $('#TimestampInput').val(today);
 });
 </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+
+
 
 
 
@@ -273,6 +251,53 @@ $(document).ready( function() {
 
 </script>
 
+
+
+
+
+
+
+
+
+
+
+ <script>
+        $('form').on('submit', (e) => {
+          e.preventDefault();
+          const timestamp = $('#TimestampInput').val().trim();
+          const time = $('#TimeInput').val().trim();
+          const date = $('#DateInput').val().trim();
+          const email = $('#email').val().trim();
+          const subject = $('#name').val().trim();
+          const text = $('#ReasonInput').val().trim();
+
+          const data = {
+            timestamp,
+            time,
+            date,
+            email,
+            subject,
+            text
+          };
+
+          $.post("https://placosos-46b755818725.herokuapp.com/email", data, function() {
+              console.log('Server received our data');
+
+
+           });
+
+
+          });;
+
+
+
+
+      </script>
+
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 
 
